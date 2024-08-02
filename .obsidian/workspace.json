@@ -37,7 +37,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "11_DataBase 数据库/Redis/2024年 Redis系统/1.4、CLI基础操作.md",
+                "file": "11_DataBase 数据库/Redis/2024年 Redis系统/1.11、Redis集群.md",
                 "mode": "preview",
                 "source": false
               }
@@ -81,7 +81,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "CAP",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -110,7 +110,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "11_DataBase 数据库/Redis/2024年 Redis系统/1.4、CLI基础操作.md"
+                "file": "11_DataBase 数据库/Redis/2024年 Redis系统/1.11、Redis集群.md"
               }
             }
           },
@@ -120,7 +120,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "11_DataBase 数据库/Redis/2024年 Redis系统/1.4、CLI基础操作.md",
+                "file": "11_DataBase 数据库/Redis/2024年 Redis系统/1.11、Redis集群.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -137,7 +137,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "11_DataBase 数据库/Redis/2024年 Redis系统/1.4、CLI基础操作.md",
+                "file": "11_DataBase 数据库/Redis/2024年 Redis系统/1.11、Redis集群.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -172,9 +172,11 @@
   },
   "active": "032d74020024fc53",
   "lastOpenFiles": [
+    "04_Question 问题/面试题/Hello 酷狗/9月11日.md",
+    "11_DataBase 数据库/Redis/2024年 Redis系统/1.11、Redis集群.md",
+    "11_DataBase 数据库/Redis/2024年 Redis系统/1.4、CLI基础操作.md",
     "11_DataBase 数据库/Redis/2024年 Redis系统/images/1.11、Redis集群/2.redis集群图.jpg",
     "11_DataBase 数据库/Redis/2024年 Redis系统/images/1.11、Redis集群",
-    "11_DataBase 数据库/Redis/2024年 Redis系统/1.11、Redis集群.md",
     "11_DataBase 数据库/Redis/2024年 Redis系统/Untitled.md",
     "11_DataBase 数据库/Redis/2024年 Redis系统/images/1.10、Redis哨兵/image-20240801220749742.png",
     "11_DataBase 数据库/Redis/2024年 Redis系统/1.10、Redis哨兵.md",
@@ -183,7 +185,6 @@
     "11_DataBase 数据库/Redis/2024年 Redis系统/1.9、Redis复制.md",
     "11_DataBase 数据库/Redis/2024年 Redis系统/images/1.9、Redis复制/image-20240731225423363.png",
     "11_DataBase 数据库/Redis/2024年 Redis系统/images/1.9、Redis复制",
-    "11_DataBase 数据库/Redis/2024年 Redis系统/1.4、CLI基础操作.md",
     "11_DataBase 数据库/Redis/2024年 Redis系统/1.8、发布订阅~.md",
     "00_Note 笔记/我的文档/昆仑流程~.md",
     "00_Note 笔记/我的文档/昆仑流程.md",
@@ -212,7 +213,6 @@
     "11_DataBase 数据库/Redis/2024年 Redis系统/images/1.4、CLI基础操作/image-20240724173817227.png",
     "11_DataBase 数据库/Redis/2024年 Redis系统/images/1.5、数据持久化/image-20240730215952321.png",
     "11_DataBase 数据库/Redis/2024年 Redis系统/images/1.4、CLI基础操作/80.stream结构.png",
-    "11_DataBase 数据库/Redis/2024年 Redis系统/images/1.4、CLI基础操作/14.string参数.jpg",
     "11_DataBase 数据库/Redis/2024年 Redis系统/images/1.4、CLI基础操作",
     "11_DataBase 数据库/Redis/2024年 Redis系统/images/1.5、数据持久化",
     "11_DataBase 数据库/Redis/2024年 Redis系统/images/1.3、10大数据类型",
