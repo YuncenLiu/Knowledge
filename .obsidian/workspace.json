@@ -37,7 +37,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "11_DataBase 数据库/Redis/2024年 Redis系统/1.11、Redis集群.md",
+                "file": "11_DataBase 数据库/Redis/2024年 Redis系统/1.13、Redis高阶面试题.md",
                 "mode": "preview",
                 "source": false
               }
@@ -110,7 +110,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "11_DataBase 数据库/Redis/2024年 Redis系统/1.11、Redis集群.md"
+                "file": "11_DataBase 数据库/Redis/2024年 Redis系统/1.13、Redis高阶面试题.md"
               }
             }
           },
@@ -120,7 +120,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "11_DataBase 数据库/Redis/2024年 Redis系统/1.11、Redis集群.md",
+                "file": "11_DataBase 数据库/Redis/2024年 Redis系统/1.13、Redis高阶面试题.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -137,7 +137,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "11_DataBase 数据库/Redis/2024年 Redis系统/1.11、Redis集群.md",
+                "file": "11_DataBase 数据库/Redis/2024年 Redis系统/1.13、Redis高阶面试题.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -172,52 +172,52 @@
   },
   "active": "032d74020024fc53",
   "lastOpenFiles": [
-    "04_Question 问题/面试题/Hello 酷狗/9月11日.md",
+    "11_DataBase 数据库/Redis/2024年 Redis系统/images/1.13、Redis高阶面试题/image-20240805001423042.png",
+    "11_DataBase 数据库/Redis/2024年 Redis系统/images/1.13、Redis高阶面试题/image-20240805001344250.png",
+    "11_DataBase 数据库/Redis/2024年 Redis系统/images/1.13、Redis高阶面试题/image-20240805001123778.png",
+    "11_DataBase 数据库/Redis/2024年 Redis系统/images/1.13、Redis高阶面试题/image-20240805000234768.png",
+    "11_DataBase 数据库/Redis/2024年 Redis系统/images/1.13、Redis高阶面试题/image-20240805000009316.png",
+    "11_DataBase 数据库/Redis/2024年 Redis系统/images/1.13、Redis高阶面试题/image-20240804235144896.png",
     "11_DataBase 数据库/Redis/2024年 Redis系统/1.11、Redis集群.md",
-    "11_DataBase 数据库/Redis/2024年 Redis系统/1.4、CLI基础操作.md",
-    "11_DataBase 数据库/Redis/2024年 Redis系统/images/1.11、Redis集群/2.redis集群图.jpg",
-    "11_DataBase 数据库/Redis/2024年 Redis系统/images/1.11、Redis集群",
+    "11_DataBase 数据库/Redis/2024年 Redis系统/images/1.13、Redis高阶面试题/image-20240804235100239.png",
+    "11_DataBase 数据库/Redis/2024年 Redis系统/images/1.13、Redis高阶面试题/image-20240804234012661.png",
+    "11_DataBase 数据库/Redis/2024年 Redis系统/README.md",
+    "Untitled.md",
+    "11_DataBase 数据库/Redis/2024年 Redis系统/images/1.13、Redis高阶面试题/image-20240804184655050.png",
+    "11_DataBase 数据库/Redis/2024年 Redis系统/images/1.13、Redis高阶面试题",
+    "11_DataBase 数据库/Redis/2024年 Redis系统/1.13、Redis高阶面试题.md",
     "11_DataBase 数据库/Redis/2024年 Redis系统/Untitled.md",
-    "11_DataBase 数据库/Redis/2024年 Redis系统/images/1.10、Redis哨兵/image-20240801220749742.png",
     "11_DataBase 数据库/Redis/2024年 Redis系统/1.10、Redis哨兵.md",
-    "11_DataBase 数据库/Redis/2024年 Redis系统/images/1.10、Redis哨兵/image-20240801013649551.png",
-    "11_DataBase 数据库/Redis/2024年 Redis系统/images/1.10、Redis哨兵",
     "11_DataBase 数据库/Redis/2024年 Redis系统/1.9、Redis复制.md",
-    "11_DataBase 数据库/Redis/2024年 Redis系统/images/1.9、Redis复制/image-20240731225423363.png",
+    "11_DataBase 数据库/Redis/2024年 Redis系统/images/1.11、Redis集群/image-20240803015113473.png",
+    "11_DataBase 数据库/Redis/2024年 Redis系统/images/1.11、Redis集群/image-20240803013430927.png",
+    "04_Question 问题/面试题/Hello 酷狗/9月11日.md",
+    "11_DataBase 数据库/Redis/2024年 Redis系统/1.4、CLI基础操作.md",
+    "11_DataBase 数据库/Redis/2024年 Redis系统/images/1.11、Redis集群",
+    "11_DataBase 数据库/Redis/2024年 Redis系统/images/1.10、Redis哨兵",
     "11_DataBase 数据库/Redis/2024年 Redis系统/images/1.9、Redis复制",
     "11_DataBase 数据库/Redis/2024年 Redis系统/1.8、发布订阅~.md",
     "00_Note 笔记/我的文档/昆仑流程~.md",
     "00_Note 笔记/我的文档/昆仑流程.md",
     "00_Note 笔记/我的文档/Untitled.md",
-    "11_DataBase 数据库/Redis/2024年 Redis系统/images/1.8、发布订阅/image-20240731135550779.png",
     "11_DataBase 数据库/Redis/2024年 Redis系统/images/1.8、发布订阅",
     "11_DataBase 数据库/Redis/2024年 Redis系统/1.8、发布订阅.md",
     "11_DataBase 数据库/Redis/2024年 Redis系统/1.5、数据持久化.md",
     "11_DataBase 数据库/Redis/2024年 Redis系统/1.7、管道.md",
     "11_DataBase 数据库/Redis/2024年 Redis系统/1.6、事务.md",
     "11_DataBase 数据库/Redis/2024年 Redis系统/1.3、10大数据类型.md",
-    "11_DataBase 数据库/Redis/2024年 Redis系统/images/Pasted image 20240730230838.png",
     "11_DataBase 数据库/Redis/2024年 Redis系统/1.7、管道~.md",
     "10_BigData 大数据/DolphinScheduler/3.x/元数据分析.md",
     "11_DataBase 数据库/Redis/2024年 Redis系统/1.2、Redis安装.md",
-    "11_DataBase 数据库/Redis/2024年 Redis系统/images/1.7、管道/image-20240730233218923.png",
     "11_DataBase 数据库/Redis/2024年 Redis系统/images/1.7、管道",
-    "11_DataBase 数据库/Redis/2024年 Redis系统/README.md",
     "11_DataBase 数据库/Redis/2024年 Redis系统/1.1、Redis简介.md",
     "11_DataBase 数据库/Redis/README.md",
     "11_DataBase 数据库/Redis/README.md.md",
     "11_DataBase 数据库/Redis/2024年 Redis系统/README.md.md",
-    "01-基础/1.5、数据持久化.md",
     "01-基础",
-    "11_DataBase 数据库/Redis/2024年 Redis系统/01-基础/1.5、数据持久化.md",
-    "11_DataBase 数据库/Redis/2024年 Redis系统/images/1.4、CLI基础操作/image-20240724173817227.png",
-    "11_DataBase 数据库/Redis/2024年 Redis系统/images/1.5、数据持久化/image-20240730215952321.png",
-    "11_DataBase 数据库/Redis/2024年 Redis系统/images/1.4、CLI基础操作/80.stream结构.png",
     "11_DataBase 数据库/Redis/2024年 Redis系统/images/1.4、CLI基础操作",
     "11_DataBase 数据库/Redis/2024年 Redis系统/images/1.5、数据持久化",
     "11_DataBase 数据库/Redis/2024年 Redis系统/images/1.3、10大数据类型",
-    "11_DataBase 数据库/Redis/2024年 Redis系统/images/1.2、Redis安装",
-    "123/01-基础/1.5、数据持久化.md",
     "未命名.canvas"
   ]
 }
