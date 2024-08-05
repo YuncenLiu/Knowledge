@@ -37,7 +37,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "11_DataBase 数据库/Redis/2024年 Redis系统/1.13、Redis高阶面试题.md",
+                "file": "08_Container容器/Docker/2021-5/狂神Docker.md",
                 "mode": "preview",
                 "source": false
               }
@@ -81,7 +81,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "CAP",
+                "query": "line:(docker exec)",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -90,7 +90,8 @@
               }
             }
           }
-        ]
+        ],
+        "currentTab": 2
       }
     ],
     "direction": "horizontal",
@@ -110,7 +111,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "11_DataBase 数据库/Redis/2024年 Redis系统/1.13、Redis高阶面试题.md"
+                "file": "08_Container容器/Docker/2021-5/狂神Docker.md"
               }
             }
           },
@@ -120,7 +121,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "11_DataBase 数据库/Redis/2024年 Redis系统/1.13、Redis高阶面试题.md",
+                "file": "08_Container容器/Docker/2021-5/狂神Docker.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -137,7 +138,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "11_DataBase 数据库/Redis/2024年 Redis系统/1.13、Redis高阶面试题.md",
+                "file": "08_Container容器/Docker/2021-5/狂神Docker.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -172,6 +173,13 @@
   },
   "active": "032d74020024fc53",
   "lastOpenFiles": [
+    "08_Container容器/Docker/Docker 容器分配固定IP~.md",
+    "08_Container容器/Docker/2024-6/01-Docker网络.md",
+    "00_Note 笔记/Mac/Ping.md",
+    "08_Container容器/Docker/Docker 容器分配固定IP.md",
+    "08_Container容器/Docker/Untitled.md",
+    "11_DataBase 数据库/Redis/2024年 Redis系统/1.13、Redis高阶面试题.md",
+    "11_DataBase 数据库/Redis/2024年 Redis系统/1.13、Redis高阶面试题~.md",
     "11_DataBase 数据库/Redis/2024年 Redis系统/images/1.13、Redis高阶面试题/image-20240805001423042.png",
     "11_DataBase 数据库/Redis/2024年 Redis系统/images/1.13、Redis高阶面试题/image-20240805001344250.png",
     "11_DataBase 数据库/Redis/2024年 Redis系统/images/1.13、Redis高阶面试题/image-20240805001123778.png",
@@ -185,12 +193,10 @@
     "Untitled.md",
     "11_DataBase 数据库/Redis/2024年 Redis系统/images/1.13、Redis高阶面试题/image-20240804184655050.png",
     "11_DataBase 数据库/Redis/2024年 Redis系统/images/1.13、Redis高阶面试题",
-    "11_DataBase 数据库/Redis/2024年 Redis系统/1.13、Redis高阶面试题.md",
     "11_DataBase 数据库/Redis/2024年 Redis系统/Untitled.md",
     "11_DataBase 数据库/Redis/2024年 Redis系统/1.10、Redis哨兵.md",
     "11_DataBase 数据库/Redis/2024年 Redis系统/1.9、Redis复制.md",
     "11_DataBase 数据库/Redis/2024年 Redis系统/images/1.11、Redis集群/image-20240803015113473.png",
-    "11_DataBase 数据库/Redis/2024年 Redis系统/images/1.11、Redis集群/image-20240803013430927.png",
     "04_Question 问题/面试题/Hello 酷狗/9月11日.md",
     "11_DataBase 数据库/Redis/2024年 Redis系统/1.4、CLI基础操作.md",
     "11_DataBase 数据库/Redis/2024年 Redis系统/images/1.11、Redis集群",
@@ -208,12 +214,7 @@
     "11_DataBase 数据库/Redis/2024年 Redis系统/1.3、10大数据类型.md",
     "11_DataBase 数据库/Redis/2024年 Redis系统/1.7、管道~.md",
     "10_BigData 大数据/DolphinScheduler/3.x/元数据分析.md",
-    "11_DataBase 数据库/Redis/2024年 Redis系统/1.2、Redis安装.md",
     "11_DataBase 数据库/Redis/2024年 Redis系统/images/1.7、管道",
-    "11_DataBase 数据库/Redis/2024年 Redis系统/1.1、Redis简介.md",
-    "11_DataBase 数据库/Redis/README.md",
-    "11_DataBase 数据库/Redis/README.md.md",
-    "11_DataBase 数据库/Redis/2024年 Redis系统/README.md.md",
     "01-基础",
     "11_DataBase 数据库/Redis/2024年 Redis系统/images/1.4、CLI基础操作",
     "11_DataBase 数据库/Redis/2024年 Redis系统/images/1.5、数据持久化",
