@@ -1,4 +1,3 @@
-
 #Linux扩容 #VMware扩容 #虚拟机扩容
 
 > 1. https://blog.csdn.net/qq_44297579/article/details/107318096
@@ -10,7 +9,7 @@
 
 查看现在最大分区 `ls | grep sda`
 
-![](Pasted%20image%2020240630231207.png)
+![](./images/Pasted%20image%2020240630231207.png)
 
 最大为 sda3，所以新添加的应该是 sda4
 
@@ -128,7 +127,7 @@ vgdisplay -v
 
 这里查看 `free PE /Site` 很重要
 
-![](Pasted%20image%2020240630232527.png)
+![](./images/Pasted%20image%2020240630232527.png)
 
 这里的 `6400` 就是可新增的内容
 
