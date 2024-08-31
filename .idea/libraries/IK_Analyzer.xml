@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="IK Analyzer">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/03_FrameSource 框架/Solr/doc/IK Analyzer/IKAnalyzer2012FF_u1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/03_FrameSource 框架/Solr/doc/IK Analyzer/IK Analyzer 2012FF_hf1.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
