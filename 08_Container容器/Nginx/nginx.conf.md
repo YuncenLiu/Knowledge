@@ -101,6 +101,11 @@ http {
         #     proxy_pass http://tomcatServer/;
         # }
     
+    		# 在 /usr/share/nginx/html 路径下要有 404.html 文件
+        error_page 404 /404.html;
+        location = /404.html {
+            root /usr/share/nginx/html;
+        }
 
         error_page 500 502 503 504 /50x.html;
         location = /50x.html {

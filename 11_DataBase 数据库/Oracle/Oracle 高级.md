@@ -1,3 +1,26 @@
+## 行转列
+
+
+
+```sql
+SELECT *
+FROM (
+    SELECT column1, column2, column3
+    FROM your_table
+)
+PIVOT (
+    SUM(column3) -- 聚集操作
+    FOR column2 IN ('值1' AS Value1, '值2' AS Value2, '值3' AS Value3) -- 多个列
+) 
+ORDER BY column1;
+```
+
+
+
+
+
+
+
 ### 1、Oracle 分页
 
 ```sql

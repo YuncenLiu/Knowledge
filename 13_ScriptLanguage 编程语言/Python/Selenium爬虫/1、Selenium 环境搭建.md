@@ -16,7 +16,7 @@
 
 
 
-![](Pasted%20image%2020240703111314.png)
+![](../images/Pasted image 20240703111314.png)
 
  Mac 使用这个地址：[https://commondatastorage.googleapis.com/chromium-browser-snapshots/index.html?prefix=Mac/](https://commondatastorage.googleapis.com/chromium-browser-snapshots/index.html?prefix=Mac/)
 
@@ -27,8 +27,8 @@
 安装 seleniume 库
 
 方法一（推荐）：
-![安装 seleniume 库](Pasted%20image%2020240703092139.png)
-![安装 seleniume 库2](Pasted%20image%2020240703092437.png)
+![安装 seleniume 库](images/1、Selenium 环境搭建/Pasted image 20240703092139.png)
+![安装 seleniume 库2](images/1、Selenium 环境搭建/Pasted image 20240703092437.png)
 
 方法二：
 
