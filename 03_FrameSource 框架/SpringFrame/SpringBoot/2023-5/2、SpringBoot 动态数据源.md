@@ -167,13 +167,20 @@ public class RoutingDataSourceContext  {
 > @SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
 > @MapperScan("com.liuyuncen.mapper")
 > public class RoutingDatasourceApplication {
->     public static void main(String[] args) {
->         SpringApplication.run(RoutingDatasourceApplication.class,args);
->     }
+>  public static void main(String[] args) {
+>      SpringApplication.run(RoutingDatasourceApplication.class,args);
+>  }
 > }
 > ```
 >
 > 一定要排除 DataSourceAutoConfiguration 这个类，因为他会去获取默认的 DataSource 配置，因为我们已经改写了 yaml 配置（在里面添加了 master、slave 等，默认的 DataSource 不认识）
+>
+> 如果是 SpingCloud，也可以用下面这种情况
+>
+> ```java
+> @EnableAutoConfiguration(exclude = {DataSourceAutoConfiguration.class})
+> @Configuration
+> ```
 
 
 
