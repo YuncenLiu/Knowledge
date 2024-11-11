@@ -203,3 +203,13 @@ git 使用代理
 git config --global http.proxy 127.0.0.1:7890
 ```
 
+
+
+
+
+### 9、git回退一个提交
+
+```sh
+git reset --hard HEAD~1
+```
+
