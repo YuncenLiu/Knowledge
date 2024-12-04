@@ -4,6 +4,24 @@ nvm 常用命令
 
 
 
+查看本地 NVM 配置
+
+```sh
+npm config list
+```
+
+![image-20241204163316883](images/NVM/image-20241204163316883.png)
+
+配置文件在：/Users/xiang/.npmrc
+
+Mac版本配置文件在 /usr/local/Cellar/nvm/0.39.7/settings.txt
+
+
+
+
+
+
+
 ```sh
 nvm off                     // 禁用node.js版本管理(不卸载任何东西)
 nvm on                      // 启用node.js版本管理
