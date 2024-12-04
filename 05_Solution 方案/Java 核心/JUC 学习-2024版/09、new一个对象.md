@@ -56,3 +56,8 @@ class Customer{
 -XX:MaxTenuringThreshold=16
 ```
 
+
+
+![image-20241204215041319](images/09、new一个对象/image-20241204215041319.png)
+
+默认开启压缩，所以 前面 Headers 头是4字节
