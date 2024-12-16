@@ -172,7 +172,7 @@ docker run -itd --name lagou_nginx_02 nginx:1.19.3-alpine
 
 
 
-通过关停容器再反序启动容器，发现容器的IP是根据启动顺序决定的，先启动的先分配，后启动的后分配。
+**通过关停容器再反序启动容器，发现容器的IP是根据启动顺序决定的，==先启动的先分配，后启动的后分配。==**
 
 
 
@@ -243,6 +243,19 @@ docker network inspect lagou-bridge
 ```
 
 
+
+将已经创建的容器绑定到 docker 容器中
+
+```sh
+docker network connect lagou-bridge nginx-01
+docker network connect lagou-bridge nginx-02
+```
+
+
+
+绑定完成后， nginx-01、nginx-02、lagou_nginx_03 三个 容器都可以互通
+
+==得出结论==：自己新建的网络，可以实现网络之间多个互访问
 
 
 
