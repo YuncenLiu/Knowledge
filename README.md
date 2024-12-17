@@ -8,8 +8,11 @@
 
 ```sh
 (Get-ChildItem -Path "C:\Users\xiang\OneDrive\Knowledge" -Recurse -Filter "*.md" -File).Count
+
+tree /Users/xiang/Library/CloudStorage/OneDrive-个人/Knowledge -fi | grep ".md$" | wc -l
 ```
 
 ### 2024年12月
 
 + 12月16日，新增对象存储，共计MD文件 609个
++ 12月17日，Docker 网络命令汇总，共计 md 文件 610个

@@ -52,6 +52,10 @@ docker0: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc noqueue state DOWN g
 
 需要在容器创建时指定 `-network=host`
 
+```sh
+docker run -itd --name nginx-02 --network host nginx:1.19.3-alpine
+```
+
 
 
 ### none模式
@@ -59,6 +63,32 @@ docker0: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc noqueue state DOWN g
 没有通信、网卡、IP
 
 场景：密码加密，这个容器只允许宿主机访问，不允许其他人访问，封闭性网络提供很好的安全性 `-network=none` 
+
+```sh
+-- 查看网络情况
+docker network ls
+
+-- 查看 none 网络情况
+docker network inspect fe66f4cd930f
+
+-- 启动一个 nginx 容器，指定配置 none 网络
+docker run -itd --name nginx-01-none --network none nginx:1.19.3-alpine
+```
+
+此时会发现 网卡中 Containers 的 IPv4Address 、V6 都为空
+
+```sh
+[root@docker ~]# docker exec -it nginx-01-none sh
+/ # ip a
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+```
+
+这种情况很少见，一般用于 保密级别非常高的，只运算加密相关逻辑，无需外部访问的服务
+
+
 
 
 
