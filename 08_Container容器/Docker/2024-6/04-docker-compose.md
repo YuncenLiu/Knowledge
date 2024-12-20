@@ -104,3 +104,113 @@ volumes:
 
 
 
+
+
+本地环境准备
+
+```sh
+docker run -itd --name nginx-01 -p 80:80 nginx:1.19.3-alpine
+docker run -tid --name tomcat-01 -p 8080:8080 tomcat:9.0.20-jre8-alpine
+
+docker cp tomcat-01:/usr/local/tomcat/webapps /data/tomcat1/webapps
+docker cp nginx-01:/etc/nginx/conf.d /data/nginx/conf.d
+docker cp nginx-01:/usr/share/nginx/html /data/nginx/html
+```
+
+Nginx 配置文件
+
+```nginx
+upstream yunNginx {
+    server 192.168.58.160:8081;
+    server 192.168.58.160:8082;
+}
+
+server {
+    listen       80;
+    server_name  192.168.58.160;
+    autoindex on;
+    index index.html index.htm index.jsp;
+    location / {
+        proxy_pass http://yunNginx;
+        add_header Accept-Control-Allow-Origin *;
+    }
+}
+```
+
+编写 docker-compose 文件
+
+```yaml
+version: '3'
+services:
+  yun-nginx:
+    image: nginx:1.19.3-alpine
+    # 可以和 services 下面的不一样
+    container_name: nginx-01
+    ports:
+      - 80:80
+    volumes:
+      - /data/nginx/conf.d:/etc/nginx/conf.d
+  yun-tomcat-01:
+    image: tomcat:9.0.20-jre8
+    container_name: tomcat-01
+    ports:
+      - 8081:8080
+    volumes:
+      - /data/tomcat1/webapps:/usr/local/tomcat/webapps
+    depends_on:
+      - yun-nginx
+  yun-tomcat-02:
+    image: tomcat:9.0.20-jre8
+    container_name: tomcat-02
+    ports:
+      - 8082:8080
+    volumes:
+      - /data/tomcat2/webapps:/usr/local/tomcat/webapps
+    depends_on:
+      - yun-nginx
+```
+
+启动服务
+
+```sh
+# 前台启动
+docker-compose up
+
+# 后台启动
+docker-compose up -d
+```
+
+
+
+```
+[+] Running 4/4
+ ✔ Network data_default  Created  0.1s 
+ ✔ Container nginx-01    Created  0.1s 
+ ✔ Container tomcat-01   Created  0.0s 
+ ✔ Container tomcat-02   Created
+```
+
+我们发现了启动了 data_default 网络，也可以通过 docker network insepct data_default 查看容器在Docker中IP分配情况。
+
+
+
+### 命令汇总
+
+> 前提必须在 docker-compose.yml 文件目录下执行如下文件，否则就要 -f 指定文件
+
+查看： docker-compose ls
+
+查看日志：docker-compose logs
+
+构建或重新构建服务：docker-compose build
+
+启动服务：docker-compose start
+
+停止已运行的服务：docker-compose stop
+
+重启：docker-compose restart
+
+
+
+相关命令官网地址：https://docs.docker.com/reference/cli/docker/compose/build/
+

@@ -16,7 +16,7 @@ Gihub 图文教程：[https://github.com/dqzboy/Docker-Proxy](https://github.com
 
 
 
-## 方案二：（有效）
+## 方案二：无效
 
 
 
@@ -65,7 +65,7 @@ sudo systemctl restart docker
 
 
 
-### 方案三：搭建自己的镜像库
+### 方案三：搭建自己的镜像库（唯一有效）
 
 
 
