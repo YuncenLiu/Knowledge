@@ -94,7 +94,7 @@ docker scout recommendations registry.cn-beijing.aliyuncs.com/yuncenliu/opengaus
 
 
 ```
-docker login --username=array_xiang registry.cn-beijing.aliyuncs.com
+docker login --username=array_xiang -p 546820.0@lyc registry.cn-beijing.aliyuncs.com
 546820.0@lyc
 
 docker tag [ImageId] registry.cn-beijing.aliyuncs.com/yuncenliu/xxxx(镜像名)

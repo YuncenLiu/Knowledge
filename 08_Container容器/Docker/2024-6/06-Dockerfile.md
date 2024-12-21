@@ -157,3 +157,40 @@ MySQL、SpringBoot、Nginx 组件
 
 制作 springboot 镜像
 
+1. maven 将文件打包到 target 目录下
+
+2. 创建 Dokcerfile 文件并将 xxx.jar 文件放到 Dockerfile 同一目录
+
+   ```Dockerfile
+   FROM registry.cn-beijing.aliyuncs.com/yuncenliu/openjdk:openjdk8-alpine3.9
+   MAINTAINER yun docker springboot "yuncenliu@163.com"
+   ## 修改源
+   #RUN echo "http://mirrors.aliyun.com/alpine/latest-stable/main/" > /etc/apk/repositories && \
+   #    echo "http://mirrors.aliyun.com/alpine/latest-stable/community/" >> /etc/apk/repositories
+   ## 安装需要的软件，解决时区问题
+   #RUN apk --update add curl bash tzdata && \
+   #    rm -rf /var/cache/apk/*
+   
+   ENV TZ Asia/Shanghaidocker
+   ARG JAR_FILE
+   COPY ${JAR_FILE} app.jar
+   EXPOSE 8082
+   ENTRYPOINT ["java","-jar","/app.jar"]
+   ```
+
+3. 执行 dockerfile 文件
+
+   ```sh
+   docker build --rm -t registry.cn-beijing.aliyuncs.com/yuncenliu/lagou-app:1.3.0  --build-arg JAR_FILE=cloud-docker-module.jar .
+   ```
+
+4. 服务器运行容器
+
+   ```sh
+   docker run -itd --name lagou-app -p 8082:8082  registry.cn-beijing.aliyuncs.com/yuncenliu/lagou-app:1.4.0
+   ```
+
+
+
+
+
