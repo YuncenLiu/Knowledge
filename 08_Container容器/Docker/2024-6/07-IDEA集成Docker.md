@@ -11,8 +11,7 @@ ExecStart=/usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock
 重启 docker
 
 ```sh
-systemctl daemon-reload
-systemctl restart docker
+systemctl daemon-reload && systemctl restart docker
 ```
 
 查看docker进程是否开启 2375 监听
