@@ -4,6 +4,10 @@
 
 编辑本地 `~/.vimrc` 文件
 
+
+
+需要用 LF 作为存储格式
+
 ```
 set tabstop=4
 set backspace=2
@@ -50,8 +54,7 @@ set viminfo+=!
 set iskeyword+=_,$,@,%,#,-
 " 字符间插入的像素行数目
 set linespace=0
-" 允许
-backspace和光标键跨越行边界
+" 允许backspace和光标键跨越行边界
 set whichwrap+=<,>,h,l
 " 高亮显示匹配的括号
 set showmatch

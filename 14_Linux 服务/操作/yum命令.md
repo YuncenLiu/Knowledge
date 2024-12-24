@@ -8,5 +8,9 @@ yum install --downloadonly --downloaddir=/root/yum  --setopt=keepcache=1 zlib-de
 
 
 
+yum 查看已经安装的工具
 
+```sh
+yum list installed | grep kube
+```
 

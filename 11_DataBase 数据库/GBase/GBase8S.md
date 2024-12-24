@@ -338,6 +338,18 @@ jdbc:gbasedbt-sqli://192.168.111.90:9088/yun;GBASEDBTSERVER=gbasedb;SQLMODE=GBas
 jdbc:gbasedbt-sqli://{host}[:{port}]/[{database}]
 ```
 
+
+
+
+
+```sh
+jdbc:gbase://10.4.43.53:5258/easttest?user=eastusertest&password=uoz@a`h#WNk4g^&M&failoverEnable=true&hostList=10.4.43.57,10.4.43.61&gclusterId=gc1
+```
+
+```
+jdbc:gbase://{host}[:{port}]/[{database}]
+```
+
 ![image-20241223225139172](images/GBase8/image-20241223225139172.png)
 
 从 ~/profile.yum 文件中查看  GBASEDBTSERVER 参数

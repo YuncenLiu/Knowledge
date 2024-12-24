@@ -1,4 +1,3 @@
-
 ### 将已启动的容器设置自启动
 
 ```
@@ -12,4 +11,11 @@ docker update redis --restart=always
 docker update redis --restart=no
 ```
 
+
+
+查看容器的状态
+
+```sh
+docker inspect --format '{{.HostConfig.RestartPolicy.Name}}'  nginx
+```
 
