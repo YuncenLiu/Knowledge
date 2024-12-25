@@ -41,3 +41,23 @@ kubectl get ds --include-uninitialized
 kubectl get pods --field-selector=spec.nodeName=server01
 ```
 
+
+
+进入容器
+
+```sh
+kubectl exec -it tomcat-test-5b54756b4d-ldpp7 sh
+```
+
+查看日志
+
+```sh
+kubectl logs -f tomcat-test-5b54756b4d-ldpp7
+```
+
+删除顽固pod
+
+```sh
+kubectl delete pod podname --force--grace-period=0
+```
+
