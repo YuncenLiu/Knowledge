@@ -1,12 +1,14 @@
 #  快速搭建 K8s 集群
 
+[toc]
 
 
-| 角色          | ip              |
-| ------------- | --------------- |
-| k8s-master-01 | 192.168.111.170 |
-| k8s-node-01   | 192.168.111.171 |
-| k8s-node-02   | 192.168.111.172 |
+
+| 角色          | ip             |
+| ------------- | -------------- |
+| k8s-master-01 | 192.168.58.170 |
+| k8s-node-01   | 192.168.58.171 |
+| k8s-node-02   | 192.168.58.172 |
 
 服务器需要连接互联网下载镜像
 
@@ -48,6 +50,26 @@ hostnamectl set-hostname k8s-master-01
 hostnamectl set-hostname k8s-node-01
 hostnamectl set-hostname k8s-node-02
 ```
+
+网络桥段
+
+```sh
+vi /etc/sysctl.conf
+
+net.bridge.bridge-nf-call-ip6tables = 1
+net.bridge.bridge-nf-call-iptables = 1
+net.bridge.bridge-nf-call-arptables = 1
+net.ipv4.ip_forward=1
+net.ipv4.ip_forward_use_pmtu = 0
+
+# 生效命令
+sysctl --system 
+
+# 查看效果
+sysctl -a|grep "ip_forward"
+```
+
+
 
 确保网络桥接的数据包经过Iptables处理，防止网络丢包
 
@@ -109,15 +131,15 @@ source /etc/profile.d/bash_completion.sh
 
 ```sh
 cat <<EOF >>/etc/hosts
-192.168.111.170		k8s-master-01
-192.168.111.171 	k8s-node-01
-192.168.111.172 	k8s-node-02
+192.168.58.170  k8s-master-01
+192.168.58.171 	k8s-node-01
+192.168.58.172 	k8s-node-02
 EOF
 ```
 
 
 
-###　安装docker
+### 安装docker
 
 下载源
 
@@ -134,7 +156,8 @@ wget https://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo -O /etc/yu
 
 yum -y install docker-ce-24.0.0
 
-systemctl enable docker && systemctl start docker
+systemctl enable docker
+systemctl start docker
 ```
 
 设置Cgroup驱动
@@ -142,7 +165,7 @@ systemctl enable docker && systemctl start docker
 ```sh
 cat > /etc/docker/daemon.json << EOF
 {
-	"exec-opts": ["native.cgroupdriver=systemd"]
+  "exec-opts": ["native.cgroupdriver=systemd"]
 }
 EOF
 
@@ -187,6 +210,8 @@ gpgkey=https://mirrors.aliyun.com/kubernetes/yum/doc/yum-key.gpg https://mirrors
 EOF
 ```
 
+
+
 安装kubeadm 官方提供的集群搭建工具，kubelet 守护进程 和kubectl 管理集群工具（实际在 master 安装即可）
 
 ```sh
@@ -196,12 +221,23 @@ systemctl enable kubelet
 # 这里只是设置开机启动，直接起也起不来
 ```
 
+设置 kubelet，添加备注信息
+
+```sh
+# 如果不配置kubelet，可能会导致K8S集群无法启动。为实现docker使用的cgroupdriver与kubelet 使用的cgroup的一致性。
+
+vi /etc/sysconfig/kubelet
+KUBELET_EXTRA_ARGS="--cgroup-driver=systemd"
+```
+
 
 
 提前把所有镜像都拉下来
 
 ```sh
+docker load -i calico.v3.25.0.tar
 docker load -i calico.v3.25.1.tar
+docker load -i calico.v3.25.2.tar
 ```
 
 
@@ -212,7 +248,7 @@ docker load -i calico.v3.25.1.tar
 
 ```sh
 kubeadm init \
-  --apiserver-advertise-address=192.168.111.170 \
+  --apiserver-advertise-address=192.168.58.170 \
   --image-repository registry.aliyuncs.com/google_containers \
   --kubernetes-version v1.28.0 \
   --service-cidr=10.96.0.0/12 \
@@ -233,7 +269,7 @@ chown $(id -u):$(id -g) $HOME/.kube/config
 `--cri-socket=unix:///var/run/cri-dockerd.sock` 这一句要补充在最后面
 
 >```sh
->kubeadm join 192.168.111.170:6443 --token y8hujn.777t21thlk6v6hy0 --discovery-token-ca-cert-hash sha256:f8df8dfe6cb7ad5347f92b6c58f552df8982c7dce540b266c22f971e49f55684 --cri-socket=unix:///var/run/cri-dockerd.sock
+>kubeadm join 192.168.58.170:6443 --token phmxd0.fzuqsa8fk00rykhq --discovery-token-ca-cert-hash sha256:1e282fd1f3c2dde90082cf889f546fde4410f65ef2502727a3fcd34b37a6a530 --cri-socket=unix:///var/run/cri-dockerd.sock
 >```
 
 使用kubectl工具查看节点状态： kubectl get nodes 由于网络插件还没有部署，节点会处于“NotReady”状态
@@ -242,76 +278,36 @@ chown $(id -u):$(id -g) $HOME/.kube/config
 
 
 
-这里使用Calico作为Kubernetes的网络插件，负责集群中网络通信。创建Calico网络组件的资源
+2024年12月25日 MacVMware 虚拟机无法使用 calico-v3.25.1、calico-v3.25.2 版本，采用最早版本 calico-v3.25.0
 
-```sh
-kubectl create -f tigera-operator.yaml
-kubectl create -f custom-resources.yaml 
+```
+uname -a
+Linux k8s-master-01 3.10.0-1160.119.1.el7.x86_64 #1 SMP Tue Jun 4 14:43:51 UTC 2024 x86_64 x86_64 x86_64 GNU/Linux
 ```
 
-执行完成后，等待几分钟，执行
-
 ```sh
-kubectl  get pods -n calico-system -o wide
+kubectl create -f calico.yaml
 ```
 
-
-
-
-
-> 问题排查，发现 nodes 无法启动，原因是下载不了镜像
+> 如果无法执行，需要删除 pod 执行
 >
 > ```sh
-> kubectl describe po calico-kube-controllers-85955d4f5b-dbhhr -n calico-system
-> kubectl describe po calico-node-2sdxr -n calico-system
-> kubectl describe po calico-node-65gw4 -n calico-system
-> kubectl describe po calico-node-xqvnf -n calico-system
-> 
-> kubectl describe po calico-typha-7cd7bb8d58-lqmxj -n calico-system
-> kubectl describe po calico-typha-7cd7bb8d58-zwjd4 -n calico-system
-> 
-> kubectl describe po csi-node-driver-d9vkx -n calico-system
-> kubectl describe po csi-node-driver-nl26v -n calico-system
-> kubectl describe po csi-node-driver-qzljb -n calico-system
-> ```
->
-> ```sh
-> systemctl daemon-reload && systemctl restart docker
-> ```
->
-> ```sh
-> docker pull registry.cn-beijing.aliyuncs.com/yuncenliu/cni:v3.25.1-calico
-> docker tag registry.cn-beijing.aliyuncs.com/yuncenliu/cni:v3.25.1-calico docker.io/calico/pod2daemon-flexvol:v3.25.1
-> 
-> docker pull registry.cn-beijing.aliyuncs.com/yuncenliu/pod2daemon-flexvol:v3.25.1-calico
-> docker tag registry.cn-beijing.aliyuncs.com/yuncenliu/pod2daemon-flexvol:v3.25.1-calico docker.io/calico/cni:v3.25.1
-> ```
->
-> 重启containerd （有用）
->
-> ```undefined
-> systemctl restart containerd
-> ```
->
-> 删除失败的 pods
->
-> ```sh
-> kubectl  get pods -n kube-system | grep calico-node-bvvhc   | awk '{print$1}'| xargs kubectl delete -n kube-system pods
-> ```
->
-> 
->
-> ```sh
-> docker save -o calico.v3.25.1.tar calico/kube-controllers:v3.25.1 calico/node:v3.25.1 calico/pod2daemon-flexvol:v3.25.1 calico/cni:v3.25.1 
-> 
-> docker load -i calico.v3.25.1.tar
+> kubectl delete -f calico.yaml
 > ```
 
-![image-20241224235521661](images/1、快速搭建 K8s 集群/image-20241224235521661.png)
+检查运行情况
 
-全部启动成功，节点也全都在线 kubectl get nodes
+```sh
+kubectl get pod -n kube-system  -o wide
+```
 
-![image-20241224235556738](images/1、快速搭建 K8s 集群/image-20241224235556738.png)
+![image-20241225150806506](images/1-1%E3%80%81%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BA%20K8s%20%E9%9B%86%E7%BE%A4%20Mac/image-20241225150806506.png)
+
+![image-20241225150817513](images/1-1%E3%80%81%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BA%20K8s%20%E9%9B%86%E7%BE%A4%20Mac/image-20241225150817513.png)
+
+
+
+
 
 
 
@@ -328,11 +324,12 @@ docker load -i k8s-dashboard-v2.7.0.tar
 ```
 kubectl apply -f kubernetes-dashboard.yaml
 kubectl get pods -n kubernetes-dashboard -o wide
+
 ```
 
 ![image-20241225000538048](images/1、快速搭建 K8s 集群/image-20241225000538048.png)
 
-执行完成后，任意 https://任意node:30001 访问，例如：https://192.168.111.170:30001/#/login
+执行完成后，任意 https://任意node:30001 访问，例如：https://192.168.58.170:30001/#/login
 
 ![image-20241225000529163](images/1、快速搭建 K8s 集群/image-20241225000529163.png)
 

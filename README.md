@@ -19,4 +19,5 @@ tree /Users/xiang/Library/CloudStorage/OneDrive-个人/Knowledge -fi | grep ".md
 + 12月19日，Docker 数据卷、Docker Compose 初步了解，（共计 612个）
 + 12月20日，Dockerfile 镜像构建（共计614个）
 + 12月23日，Docker 运维搭建 Gitlab、FastDFS、ES集群等，初步了解 Swarm（620个）
++ 12月25日，k8s 快速搭建（639个）
 
