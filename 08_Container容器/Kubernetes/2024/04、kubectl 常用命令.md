@@ -2,6 +2,18 @@
 
 
 
+选镜像先选 
+
+```
+alpine （小而坚固）> slim （压缩）
+```
+
+> 官网的镜像，都是 UTC 时间，并非合适的时间
+
+
+
+
+
 ### kubectl get
 
 ```sh
@@ -47,6 +59,12 @@ kubectl get pods --field-selector=spec.nodeName=server01
 
 ```sh
 kubectl exec -it tomcat-test-5b54756b4d-ldpp7 sh
+```
+
+操作命令
+
+```sh
+kubectl exec -it xxxx-pod -- touch /tmp/test.sh
 ```
 
 查看日志
