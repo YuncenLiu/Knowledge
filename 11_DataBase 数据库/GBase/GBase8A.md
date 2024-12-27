@@ -83,7 +83,7 @@ tar xfj GBase8a_MPP_Cluster-NoLicense-FREE-9.5.3.28.12-redhat7-x86_64.tar.bz2
 #### 创建 DBA 用户
 
 ```sh
-useradd gbase
+usergroup gbase
 useradd gbase -g gbase
 passwd gbase
 # Abcd!234
@@ -325,68 +325,6 @@ Abcd!234
 5. 重复安装
 
 错误日志可以从 gcinstall/gcinstall.log 文件中查看
-
-
-
-
-
-### 设置分片信息
-
-vim /opt/gcinstall/gcChangeInfo.xml
-
-```sh
-<?xml version="1.0" encoding="utf-8"?>                                 
-<servers>
-    <rack>
-        <node ip="192.168.111.91"/>
-    </rack>
-</servers>
-```
-
-
-
-先备份文件 cp gcChangeInfo.xml gcChangeInfo_bak.xml
-
-```sh
-gcadmin distribution gcChangeInfo.xml p 2 d 1 pattern 1
-```
-
-查看分库表
-
-```sh
-gcadmin showdistribution node
-```
-
-
-
-
-
-### 登录数据库
-
-```sh
-gccli -u root -p
-# 密码为空 直接回车
-```
-
-![image-20241227004135725](images/GBase8A/image-20241227004135725.png)
-
-
-
-
-
-
-
-```sql
-set default_vc for user_name = vc_name
-```
-
-
-
-
-
-```sql
-SET PASSWORD FOR root = PASSWORD('Abcd!234');
-```
 
 
 

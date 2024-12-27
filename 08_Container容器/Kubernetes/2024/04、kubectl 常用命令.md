@@ -79,3 +79,9 @@ kubectl logs -f tomcat-test-5b54756b4d-ldpp7
 kubectl delete pod podname --force--grace-period=0
 ```
 
+查询文档
+
+```sh
+kubectl explain service.spec.type
+```
+
