@@ -21,7 +21,7 @@ docker pull registry.cn-beijing.aliyuncs.com/yuncenliu/mariadb:10.5.2
 
 
 
-### secret
+## secret
 
 ```yaml
 env:
@@ -84,6 +84,36 @@ env:
 
 
 
-### Configmap
+
+
+
 
 用于保存配置数据的键值对，也可以保存单个属性和配置文件
+
+
+
+## hostPath
+
+将工作节点某文件系统的目录或文件挂载于 Pod 中的一种存储卷
+
+只做入门操作，不做实际使用
+
+
+
+提前了解如何给 node 打 label 标签
+
+准备好存储数据的目录
+
+```sh
+mkdir -p /root/mariadb-data
+```
+
+![image-20241229173457911](images/14、volume 存储/image-20241229173457911.png)
+
+为什么不实际使用，因为只能支持单节点，而且只支持 ReadWriteOnce 就是 1对1 模式
+
+
+
+#### enptyDir
+
+pod 生命周期中的 临时目录，在 pod 对象被移除时会被一并删除，用的很少，例如同一个 pod 内多个容器之间文件共享，或者作为容器数据临时存储目录用于数据缓存系统。
