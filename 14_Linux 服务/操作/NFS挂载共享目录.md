@@ -26,11 +26,11 @@ Network FileSystem，标准的 CS 系统，基于 PRC协议传输
 如果目录不存在，则创建目录
 
 ```sh
-mkdir -p /data/nfs
+mkdir -p /data
 ```
 
 ```sh
-chown -R nsfnobody:nfsnobody /data/nfs
+chown -R nsfnobody:nfsnobody /data
 ```
 
 
@@ -38,7 +38,7 @@ chown -R nsfnobody:nfsnobody /data/nfs
 配置挂载权限 `/etc/exports`
 
 ```
-/data/nfs 192.168.111.171(rw,sync,no_subtree_check,no_root_squash)  192.168.111.172(rw,sync,no_subtree_check,no_root_squash)
+/data 192.168.111.171(rw,sync,no_subtree_check,no_root_squash)  192.168.111.172(rw,sync,no_subtree_check,no_root_squash)
 ```
 
 - `rw`：允许读写。
@@ -66,20 +66,32 @@ systemctl start nfs-server
 #### node 节点执行
 
 ```sh
-mkdir -p /data/nfs
+mkdir -p /data
 ```
 
 挂载 NFS
 
 ```sh
 mount 192.168.111.170:/data/nfs /data/nfs
+
+mount 192.168.58.170:/data /data
 ```
 
 编辑自动挂载，避免重启后丢失` /etc/fstab`
 
 ```sh
 192.168.111.170:/data/nfs /data/nfs nfs defaults 0 0
+
+192.168.58.170:/data /data nfs defaults 0 0
 ```
+
+自动挂载
+
+```sh
+mount -a
+```
+
+
 
 
 

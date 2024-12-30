@@ -249,3 +249,83 @@ nfs:
   server: 192.168.111.170
 ```
 
+
+
+# 动态 PV
+
+安装镜像  [docker hub](https://hub.docker.com/r/vbouchaud/nfs-client-provisioner/tags) 官网
+
+```sh
+docker pull vbouchaud/nfs-client-provisioner:v3.2.2
+```
+
+
+
+创建文件 nfs-pv.yml、nfs-rbac.yml、nfs-storage.yml，参考 Github：[src/main/resources/k8s-nfs-dynamic](src/main/resources/k8s-nfs-dynamic)
+
+![image-20241230154723780](images/17%E3%80%81PV%E5%92%8CPVC/image-20241230154723780.png)
+
+
+
+![image-20241230160719699](images/17%E3%80%81PV%E5%92%8CPVC/image-20241230160719699.png)
+
+成功的将文件挂在到 NFS 共享磁盘中
+
+即使使用 `kubectl delete -f ./` 删除所有 pod 资源， 在本地 NFS 共享目录 /data 下依旧存在此目录
+
+![image-20241230163524187](images/17%E3%80%81PV%E5%92%8CPVC/image-20241230163524187.png)
+
+等待回收 Released，但是目录还在
+
+将其进行删除
+
+```sh
+kubectl edit pv pvc-c7d60abb-d497-4ff5-9c8e-3c3354cc823b
+```
+
+将这段内容删掉
+
+![image-20241230163703036](images/17%E3%80%81PV%E5%92%8CPVC/image-20241230163703036.png)
+
+此时 `STATUS` 状态由 `Released` 转为 `Available` 就可以手动删除 目录了，这是运维工程师做的，对于咱们开发人员来说，在测试环境，直接 delete pv xxx ，再删除 目录
+
+
+
+## volumeClaimTemplate 属性
+
+#### statefulset 组成
+
++ Headless Service，名 nginx，用来定义Pod 网络标识
++ Statefulset，有三个 pod 副本，并为每个pod定义域名
++ volumeClaimTemplates，存储卷申请模版，创建 PVC，指定pvc名称大小，将自动创建 pvc，且 pvc 必须由存储类供应
+
+
+
+##### 为什么需要 headless service 无头服务
+
+deployment 中，每个 pod 事无序的，是随机字符串，但是 statefulset 中要求必须是有序的，每个 pod 不能被随意替换，因此需要无头服务，保证每个 pod 唯一名称
+
+
+
+##### 为什么需要 volumeClaimTemplate
+
+对于又状态副本集都会用到持久存储，对于分布式来讲，最大特点是数据不一致，所以各节点不能使用同一存储卷，每个节点都有自己 专用存储，但是 deployment 中的 pod template 定义的存储卷所用副本公用一个存储卷，数据是相同的，而 statefulset 中每一个 pod 都要有专有存储卷
+
+
+
+## Nginx 实现动态PVC 挂在 NFS案例
+
+
+
+### nfs 服务
+
+[完整案例： GitHub](https://github.com/YuncenLiu/code-example/tree/master/docker-module/src/main/resources/k8s-statefuleset)
+
+[nfs-rbac.yml](https://github.com/YuncenLiu/code-example/blob/master/docker-module/src/main/resources/k8s-nfs-dynamic/nfs-rbac.yml) 和前文保持一致
+
+![image-20241230170924812](images/17%E3%80%81PV%E5%92%8CPVC/image-20241230170924812.png)
+
+分别动态绑定
+
+![image-20241230171543956](images/17%E3%80%81PV%E5%92%8CPVC/image-20241230171543956.png)
+
