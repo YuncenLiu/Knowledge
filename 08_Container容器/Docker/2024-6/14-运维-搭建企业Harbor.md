@@ -93,6 +93,16 @@ systemctl restart docker
 
 
 
+> ```sh
+> cp /data/nfs/ssl/harbor.liuyuncen.com.cert /etc/docker/certs.d/harbor.liuyuncen.com/
+> cp /data/nfs/ssl/harbor.liuyuncen.com.key /etc/docker/certs.d/harbor.liuyuncen.com/
+> cp /data/nfs/ssl/ca.crt /etc/docker/certs.d/harbor.liuyuncen.com/
+> ```
+>
+> 用于 k8s 集群操作
+
+
+
 修改 harbor.yml 文件
 
 ```yaml
@@ -156,6 +166,8 @@ docker 登录私服
 docker login harbor.liuyuncen.com
 admin
 Harbor12345
+
+docker login --username=admin -p Harbor12345 harbor.liuyuncen.com
 ```
 
 ![image-20241223170944261](images/14-%E8%BF%90%E7%BB%B4-%E6%90%AD%E5%BB%BA%E4%BC%81%E4%B8%9AHarbor/image-20241223170944261.png)

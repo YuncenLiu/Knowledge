@@ -68,3 +68,11 @@ docker run -itd --name gitlab-17.7 -p 443:443 -p 80:80 -p 222:22 -m 8GB -v /data
 
 
 
+
+
+```sh
+docker tag registry.cn-beijing.aliyuncs.com/yuncenliu/gitlab-ce:17.7.0-ce.0 harbor.liuyuncen.com/yun/gitlab-ce:17.7.0-ce.0
+
+docker push harbor.liuyuncen.com/yun/gitlab-ce:17.7.0-ce.0
+```
+

@@ -202,6 +202,8 @@ git 使用代理
 ```sh
 git config --global http.proxy 127.0.0.1:7890
 git config --global https.proxy 127.0.0.1:7890
+
+git -c http.proxy=http://127.0.0.1:7890 -c https.proxy=http://127.0.0.1:7890 push origin master
 ```
 
 

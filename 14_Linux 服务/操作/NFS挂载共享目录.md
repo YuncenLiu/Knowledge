@@ -59,6 +59,8 @@ chown -R nsfnobody:nfsnobody /data
 
 ```sh
 systemctl start nfs-server
+
+systemctl enable nfs-server
 ```
 
 

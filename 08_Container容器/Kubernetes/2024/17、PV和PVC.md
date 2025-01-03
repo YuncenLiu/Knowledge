@@ -323,9 +323,87 @@ deployment 中，每个 pod 事无序的，是随机字符串，但是 statefuls
 
 [nfs-rbac.yml](https://github.com/YuncenLiu/code-example/blob/master/docker-module/src/main/resources/k8s-nfs-dynamic/nfs-rbac.yml) 和前文保持一致
 
+提前创建 NFS 挂在父目录 
+
+```sh
+mkdir -p /data/nginx
+```
+
+
+
 ![image-20241230170924812](images/17%E3%80%81PV%E5%92%8CPVC/image-20241230170924812.png)
 
 分别动态绑定
 
 ![image-20241230171543956](images/17%E3%80%81PV%E5%92%8CPVC/image-20241230171543956.png)
+
+
+
+## Mariadb 实现动态 PVC 挂在 NFS 案例
+
+
+
+
+
+![image-20241230174108855](images/17%E3%80%81PV%E5%92%8CPVC/image-20241230174108855.png)
+
+
+
+![image-20241230175032357](images/17%E3%80%81PV%E5%92%8CPVC/image-20241230175032357.png)
+
+```sh
+kubectl get po
+
+kubectl get pv
+
+kubectl get pvc
+
+kubectl get statefulsets.apps
+
+kubectl get svc
+```
+
+ 
+
+由于 statefulsets 不适合对外进行暴露，所以我们启一个 pod 连接
+
+```sh
+kubectl run mariadb-test --image=mariadb:10.5.2 --restart=Never -it --rm --command -- mysql -hmariadb-headless-service -uroot -p123456
+```
+
++ mariadb-test：pod名称
+
++ --restart=Never：临时测试的，所以不需要重启
+
++ -it：进入容器执行
+
++ --rm 退出容器就销毁
+
++ --command 进入容器执行命令
+
+	```sh
+	mysql -hmariadb-headless-service -uroot -p123456
+	```
+
+	+ -h 是 service 的名字，使用 kubectl get service 获取
+
+![image-20241230175708824](images/17%E3%80%81PV%E5%92%8CPVC/image-20241230175708824.png)
+
+`yun` 数据库是我们在 mariadb-statefule-set.yml 中写的 
+
+```yaml
+  # 创建数据库
+- name: MYSQL_DATABASE
+  value: yun
+```
+
+创建 数据库 `create database xiang;`  我们可以去 /data/mariadb 下去看一下是否真正创建
+
+![image-20241230175907660](images/17%E3%80%81PV%E5%92%8CPVC/image-20241230175907660.png)
+
+
+
+即使删除 `kubectl delete po mariadb-stateful-set-0  pod 也可以理解被重启
+
+![image-20241230180042933](images/17%E3%80%81PV%E5%92%8CPVC/image-20241230180042933.png)
 
