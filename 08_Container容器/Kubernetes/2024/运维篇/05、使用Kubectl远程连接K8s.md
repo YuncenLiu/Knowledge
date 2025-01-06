@@ -1,5 +1,9 @@
 # 使用 Kubectl 远程连接 K8s
 
+Mac 可以使用命令补全，Windows 不可以
+
+
+
 > 2025-01-03
 
 参考 [CSDN](https://blog.csdn.net/m0_51510236/article/details/133710224)
@@ -8,6 +12,8 @@
 
 ```
 https://cdn.dl.k8s.io/release/v1.28.0/bin/darwin/amd64/kubectl
+
+https://dl.k8s.io/release/v1.28.0/bin/windows/amd64/kubectl.exe
 ```
 
 

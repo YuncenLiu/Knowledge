@@ -1,12 +1,12 @@
-#  \快速搭建 K8s 集群
+#  快速搭建 K8s 集群
 
 
 
-| 角色          | ip              |
-| ------------- | --------------- |
-| k8s-master-01 | 192.168.111.170 |
-| k8s-node-01   | 192.168.111.171 |
-| k8s-node-02   | 192.168.111.172 |
+| 角色          | ip            |
+| ------------- | ------------- |
+| k8s-master-01 | 192.168.126.4 |
+| k8s-node-01   | 192.168.126.5 |
+| k8s-node-02   | 192.168.126.6 |
 
 服务器需要连接互联网下载镜像
 
@@ -129,9 +129,9 @@ source /etc/profile.d/bash_completion.sh
 
 ```sh
 cat <<EOF >>/etc/hosts
-192.168.111.170		k8s-master-01
-192.168.111.171 	k8s-node-01
-192.168.111.172 	k8s-node-02
+192.168.126.4		k8s-master-01
+192.168.126.5 	k8s-node-01
+192.168.126.6 	k8s-node-02
 EOF
 
 cat <<EOF >>/etc/hosts
@@ -236,7 +236,15 @@ docker load -i calico.v3.25.1.tar
 
 ```sh
 kubeadm init \
-  --apiserver-advertise-address=192.168.111.170 \
+  --apiserver-advertise-address=192.168.126.170 \
+  --image-repository registry.aliyuncs.com/google_containers \
+  --kubernetes-version v1.28.0 \
+  --service-cidr=10.96.0.0/12 \
+  --pod-network-cidr=10.244.0.0/16 \
+  --cri-socket=unix:///var/run/cri-dockerd.sock
+  
+kubeadm init \
+  --apiserver-advertise-address=192.168.126.4 \
   --image-repository registry.aliyuncs.com/google_containers \
   --kubernetes-version v1.28.0 \
   --service-cidr=10.96.0.0/12 \
@@ -257,8 +265,9 @@ chown $(id -u):$(id -g) $HOME/.kube/config
 `--cri-socket=unix:///var/run/cri-dockerd.sock` 这一句要补充在最后面
 
 >```sh
->kubeadm join 192.168.111.170:6443 --token y8hujn.777t21thlk6v6hy0 --discovery-token-ca-cert-hash sha256:f8df8dfe6cb7ad5347f92b6c58f552df8982c7dce540b266c22f971e49f55684 --cri-socket=unix:///var/run/cri-dockerd.sock
+>kubeadm join 192.168.126.4:6443 --token 0hgnze.u0ptb65t58rq6eou  --discovery-token-ca-cert-hash sha256:75143acac80a3cdd0a24a8ec20dbfbfaff4032854d67cb2f3550cde24956f5cf --cri-socket=unix:///var/run/cri-dockerd.sock
 >```
+>
 
 使用kubectl工具查看节点状态： kubectl get nodes 由于网络插件还没有部署，节点会处于“NotReady”状态
 
@@ -356,7 +365,7 @@ kubectl get pods -n kubernetes-dashboard -o wide
 
 ![image-20241225000538048](images/1、快速搭建 K8s 集群/image-20241225000538048.png)
 
-执行完成后，任意 https://任意node:30001 访问，例如：https://192.168.111.170:30001/#/login
+执行完成后，任意 https://任意node:30001 访问，例如：https://192.168.126.4:30001/#/login
 
 ![image-20241225000529163](images/1、快速搭建 K8s 集群/image-20241225000529163.png)
 

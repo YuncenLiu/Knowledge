@@ -65,6 +65,17 @@ hostNetwork: false
 https://github.com/YuncenLiu/code-example/blob/master/docker-module/src/main/resources/k8s-metrics-server/components.yaml
 ```
 
+
+
+```sh
+kubectl create secret docker-registry aliyun-yuncen \
+  --docker-server=registry.cn-beijing.aliyuncs.com \
+  --docker-username=array_xiang \
+  --docker-password=546820.0@lyc \
+  --docker-email=your-email@example.com \
+  --namespace=kube-system
+```
+
 最后 kubectl apply -f  执行，等 pod 运行成功后
 
 重新执行

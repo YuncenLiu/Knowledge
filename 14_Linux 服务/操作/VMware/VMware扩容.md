@@ -3,11 +3,17 @@
 > 1. https://blog.csdn.net/qq_44297579/article/details/107318096
 
 1. 在 vmware 里面设置虚拟机大小
+
+   ![image-20250105154840168](images/VMware扩容/image-20250105154840168.png)
+
+   
+
 2. 重启服务器之前，删除所有快照（提示这样）
+
 3. 查看当前可用 `df -h`
 
 
-查看现在最大分区 `ls | grep sda`
+cd /dev 查看现在最大分区 `ls | grep sda`
 
 ![](./images/Pasted%20image%2020240630231207.png)
 
@@ -77,6 +83,8 @@ the next reboot or after you run partprobe(8) or kpartx(8)
 
 **重启 `reboot`**  必须重启，否则无法格式化分区 sda3
 
+## 重启
+
 重启后，此时，就有 /dev/sda3 文件了， 执行 
 
 ```sh
@@ -119,10 +127,10 @@ Writing superblocks and filesystem accounting information: 完成
 lvm>pvcreate /dev/sda3 
 
 # 将初始化过的分区加入到虚拟卷组centos (卷和卷组的命令可以通过 vgdisplay )
-vgextend centos /dev/sda3
+lvm>vgextend centos /dev/sda3
 
 # 查看free PE /Site
-vgdisplay -v
+lvm>vgdisplay -v
 ```
 
 这里查看 `free PE /Site` 很重要
@@ -134,10 +142,11 @@ vgdisplay -v
 ```sh
 
 # 扩展已有卷的容量（6400 是通过vgdisplay查看free PE /Site的大小）
-lvextend -l+6400 /dev/mapper/centos-root
+lvm>lvextend -l+6400 /dev/mapper/centos-root
+lvm>lvextend -l+20479 /dev/mapper/centos-root
 
 # 退出
-quit
+lvm>quit
 ```
 
 以上只是卷扩容，文件系统并没有真正扩容

@@ -1,4 +1,4 @@
-# Kubernetes集群ingress暴露应用
+# Kubernetes集群ingress暴露应用(有问题，容易导致K8s死机)
 
 参考：[CSDN](https://blog.csdn.net/m0_51510236/article/details/132536519)
 
