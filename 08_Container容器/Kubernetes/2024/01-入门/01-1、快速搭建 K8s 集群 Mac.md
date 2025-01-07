@@ -4,11 +4,11 @@
 
 
 
-| 角色          | ip             |
-| ------------- | -------------- |
-| k8s-master-01 | 192.168.58.170 |
-| k8s-node-01   | 192.168.58.171 |
-| k8s-node-02   | 192.168.58.172 |
+| 角色          | ip           |
+| ------------- | ------------ |
+| k8s-master-01 | 192.168.58.4 |
+| k8s-node-01   | 192.168.58.5 |
+| k8s-node-02   | 192.168.58.6 |
 
 服务器需要连接互联网下载镜像
 
@@ -131,9 +131,9 @@ source /etc/profile.d/bash_completion.sh
 
 ```sh
 cat <<EOF >>/etc/hosts
-192.168.58.170  k8s-master-01
-192.168.58.171 	k8s-node-01
-192.168.58.172 	k8s-node-02
+192.168.58.4  k8s-master-01
+192.168.58.5 	k8s-node-01
+192.168.58.6 	k8s-node-02
 EOF
 ```
 
@@ -248,7 +248,7 @@ docker load -i calico.v3.25.2.tar
 
 ```sh
 kubeadm init \
-  --apiserver-advertise-address=192.168.58.170 \
+  --apiserver-advertise-address=192.168.58.4 \
   --image-repository registry.aliyuncs.com/google_containers \
   --kubernetes-version v1.28.0 \
   --service-cidr=10.96.0.0/12 \
@@ -269,7 +269,7 @@ chown $(id -u):$(id -g) $HOME/.kube/config
 `--cri-socket=unix:///var/run/cri-dockerd.sock` 这一句要补充在最后面
 
 >```sh
->kubeadm join 192.168.58.170:6443 --token phmxd0.fzuqsa8fk00rykhq --discovery-token-ca-cert-hash sha256:1e282fd1f3c2dde90082cf889f546fde4410f65ef2502727a3fcd34b37a6a530 --cri-socket=unix:///var/run/cri-dockerd.sock
+>kubeadm join 192.168.58.4:6443 --token phmxd0.fzuqsa8fk00rykhq --discovery-token-ca-cert-hash sha256:1e282fd1f3c2dde90082cf889f546fde4410f65ef2502727a3fcd34b37a6a530 --cri-socket=unix:///var/run/cri-dockerd.sock
 >```
 
 使用kubectl工具查看节点状态： kubectl get nodes 由于网络插件还没有部署，节点会处于“NotReady”状态
@@ -329,7 +329,7 @@ kubectl get pods -n kubernetes-dashboard -o wide
 
 ![image-20241225000538048](images/1、快速搭建 K8s 集群/image-20241225000538048.png)
 
-执行完成后，任意 https://任意node:30001 访问，例如：https://192.168.58.170:30001/#/login
+执行完成后，任意 https://任意node:30001 访问，例如：https://192.168.58.4:30001/#/login
 
 ![image-20241225000529163](images/1、快速搭建 K8s 集群/image-20241225000529163.png)
 

@@ -74,7 +74,7 @@ mkdir -p /data
 挂载 NFS
 
 ```sh
-mount 192.168.126.170:/data /data
+mount 192.168.126.4:/data /data
 
 mount 192.168.58.170:/data /data
 ```
@@ -82,7 +82,7 @@ mount 192.168.58.170:/data /data
 编辑自动挂载，避免重启后丢失` /etc/fstab`
 
 ```sh
-192.168.126.170:/data/nfs /data/nfs nfs defaults 0 0
+192.168.126.4:/data /data nfs defaults 0 0
 
 192.168.58.170:/data /data nfs defaults 0 0
 ```
@@ -98,7 +98,7 @@ mount -a
 查看可挂载
 
 ```sh
-showmount -e 192.168.126.170
+showmount -e 192.168.126.4
 ```
 
 
