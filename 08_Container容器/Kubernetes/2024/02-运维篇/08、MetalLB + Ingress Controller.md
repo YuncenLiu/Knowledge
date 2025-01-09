@@ -1,4 +1,4 @@
-# Kubernetes MetalLB + Ingress 
+# Kubernetes MetalLB + Ingress
 
 [toc]
 
@@ -76,15 +76,74 @@ kubectl create ingress NAME --rule=host/path=service:port[,tls[=secret]]
 
 
 
-#### 2.1.1、simple fanout案例1
+#### 2.1.1、simple fanout案例
+
+第一组Nginx
+
+simple-fanout-a-dep.yaml
 
 ```sh
-kubectl create deployment simple-fanout-dep --image=registry.cn-beijing.aliyuncs.com/yuncenliu/nginx:1.27.3 --replicas=3 -o yaml --dry-run=client > test/simple-fanout-dep.yaml
+kubectl create deployment simple-fanout-a-dep --image=ikubernetes/demoapp:v1.0 --replicas=3 -o yaml --dry-run=client > 02-simple-fanout/01-simple-fanout-a-dep.yaml
 ```
 
-创建 clusterip
+simple-fanout-a-svc.yaml
 
 ```sh
-kubectl create service clusterip simple-fanout-dep --tcp=80:80 --dry-run=client -o yaml > test/simple-fanout-svc.yaml
+kubectl create service clusterip simple-fanout-a-dep --tcp=80:80 --dry-run=client -o yaml > 02-simple-fanout/02-simple-fanout-a-svc.yaml
 ```
 
+第二组Nginx
+
+```sh
+kubectl create deployment simple-fanout-b-dep --image=ikubernetes/demoapp:v1.0 --replicas=2 -o yaml --dry-run=client > 02-simple-fanout/03-simple-fanout-b-dep.yaml
+```
+
+```sh
+kubectl create service clusterip simple-fanout-b-dep --tcp=80:80 --dry-run=client -o yaml > 02-simple-fanout/04-simple-fanout-b-svc.yaml
+```
+
+运行当前节点
+
+![image-20250109150733603](images/08%E3%80%81MetalLB%20+%20Ingress%20Controller/image-20250109150733603.png)
+
+
+
+编写 loop 命令
+
+```sh
+#!/bin/bash
+
+# 检查是否提供了命令
+if [ $# -eq 0 ]; then
+  echo "请提供要循环执行的命令"
+  exit 1
+fi
+
+# 使用无限循环执行命令，每次循环之间间隔1秒
+while true; do
+  "$@"      # 执行传入的命令
+  sleep 1   # 每次循环后暂停1秒
+done
+```
+
+
+
+验证负载均衡
+
+```sh
+loop curl 10.97.17.245
+```
+
+![image-20250109150917871](images/08%E3%80%81MetalLB%20+%20Ingress%20Controller/image-20250109150917871.png)
+
+
+
+
+
+
+
+#### 2.1.1、annotaion 案例
+
+Ingress-Nginx 支持 annotation nginx.ingress.kubernetes.io/rewrite-target 注解进行
+
+1. 

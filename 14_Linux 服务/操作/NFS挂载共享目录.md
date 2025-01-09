@@ -76,7 +76,7 @@ mkdir -p /data
 ```sh
 mount 192.168.126.4:/data /data
 
-mount 192.168.58.170:/data /data
+mount 192.168.58.4:/data /data
 ```
 
 编辑自动挂载，避免重启后丢失` /etc/fstab`
@@ -84,7 +84,7 @@ mount 192.168.58.170:/data /data
 ```sh
 192.168.126.4:/data /data nfs defaults 0 0
 
-192.168.58.170:/data /data nfs defaults 0 0
+192.168.58.4:/data /data nfs defaults 0 0
 ```
 
 自动挂载

@@ -26,6 +26,8 @@ kubectl edit cm kube-proxy -n kube-system
 kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.13.12/config/manifests/metallb-native.yaml
 ```
 
+修改过后的 [metallb-native.yaml](https://github.com/YuncenLiu/code-example/blob/master/kubernetes/src/main/resources/01-MetailLB/conf/metallb-native.yaml)
+
 ![image-20250107223313747](images/07、Kuberntes LoadBalancer-MetaILBUntitled/image-20250107223313747.png)
 
 

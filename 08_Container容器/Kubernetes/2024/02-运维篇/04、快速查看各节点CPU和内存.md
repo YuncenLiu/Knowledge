@@ -72,7 +72,7 @@ kubectl create secret docker-registry aliyun-yuncen \
   --docker-server=registry.cn-beijing.aliyuncs.com \
   --docker-username=array_xiang \
   --docker-password=546820.0@lyc \
-  --docker-email=your-email@example.com \
+  --docker-email=array_xiangxiang@163.com \
   --namespace=kube-system
 ```
 
